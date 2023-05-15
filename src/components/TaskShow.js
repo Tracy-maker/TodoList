@@ -14,6 +14,8 @@ const TaskItem = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  border-style:solid;
+  border-width:1px;
 `;
 
 function TaskShow({ task, onDelete, onEdit }) {
@@ -26,10 +28,12 @@ function TaskShow({ task, onDelete, onEdit }) {
   const handleSubmit=()=>{
     setShowEdit(false);
   }
+
   let content = <h4>{task.taskTitle}</h4>;
   if (showEdit) {
     content = <TaskEdit onSubmit={handleSubmit} onEdit={onEdit} task={task}/>;
   }
+
   const handleDeleteClick = () => {
     onDelete(task.id);
   };

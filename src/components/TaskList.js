@@ -10,7 +10,7 @@ function TaskList({ tasks, onDelete, onEdit }) {
   });
 
   return (
-    <Sheet variant="outlined" sx={{ bgcolor: "background.body" }}>
+    <Sheet variant="outlined">
       {renderedTasks}
     </Sheet>
   );
