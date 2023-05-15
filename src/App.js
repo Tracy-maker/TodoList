@@ -6,6 +6,19 @@ import TaskList from "./components/TaskList";
 function App() {
   const [tasks, setTasks] = useState([]);
 
+  const editTaskById = (id, newTitle) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          taskTitle: newTitle,
+        };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
+
   const deleteTaskById = (id) => {
     const updatedTasks = tasks.filter((task) => {
       return task.id !== id;
@@ -14,7 +27,10 @@ function App() {
   };
 
   const createTask = (taskTitle) => {
-    const updatedTasks = [...tasks, { id: Math.round(Math.random() * 9999), taskTitle}];
+    const updatedTasks = [
+      ...tasks,
+      { id: Math.round(Math.random() * 9999), taskTitle },
+    ];
     setTasks(updatedTasks);
   };
 
@@ -24,7 +40,11 @@ function App() {
       <div>
         <AddTask onCreate={createTask} />
         <Button />
-        <TaskList tasks={tasks} onDelete={deleteTaskById} />
+        <TaskList
+          onEdit={editTaskById}
+          tasks={tasks}
+          onDelete={deleteTaskById}
+        />
       </div>
     </div>
   );

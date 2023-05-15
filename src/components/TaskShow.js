@@ -16,19 +16,26 @@ const TaskItem = styled.div`
   padding: 10px;
 `;
 
-function TaskShow({ task, onDelete }) {
+function TaskShow({ task, onDelete, onEdit }) {
   const [showEdit, setShowEdit] = useState(false);
 
   const handleEditClick = () => {
     setShowEdit(!showEdit);
   };
+
+  const handleSubmit=()=>{
+    setShowEdit(false);
+  }
   let content = <h4>{task.taskTitle}</h4>;
   if (showEdit) {
-    content = <TaskEdit task={task}/>;
+    content = <TaskEdit onSubmit={handleSubmit} onEdit={onEdit} task={task}/>;
   }
   const handleDeleteClick = () => {
     onDelete(task.id);
   };
+
+  
+
   return (
     <TaskItem>
       <Checkbox />
