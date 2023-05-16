@@ -10,7 +10,7 @@ const TaskEditBar = styled.form`
   align-items: stretch;
 `;
 
-function TaskEdit({ task,onEdit,onSubmit}) {
+function TaskEdit({ task,onSubmit}) {
   const [title, setTitle] = useState(task.taskTitle);
 
   const handleChange = (event) => {
@@ -19,8 +19,7 @@ function TaskEdit({ task,onEdit,onSubmit}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onEdit(task.id,title);
-    onSubmit();
+    onSubmit(task.id,title);
   };
 
   return (

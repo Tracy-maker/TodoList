@@ -25,13 +25,14 @@ function TaskShow({ task, onDelete, onEdit }) {
     setShowEdit(!showEdit);
   };
 
-  const handleSubmit=()=>{
+  const handleSubmit=(id,newTitle)=>{
     setShowEdit(false);
+    onEdit(id,newTitle)
   }
 
   let content = <h4>{task.taskTitle}</h4>;
   if (showEdit) {
-    content = <TaskEdit onSubmit={handleSubmit} onEdit={onEdit} task={task}/>;
+    content = <TaskEdit onSubmit={handleSubmit} task={task}/>;
   }
 
   const handleDeleteClick = () => {
