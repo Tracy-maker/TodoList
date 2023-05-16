@@ -17,8 +17,10 @@ function AddTask({ onCreate }) {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    onCreate(taskTitle);
-    setTaskTitle("");
+    if (taskTitle.trim() !== "") {
+      onCreate(taskTitle);
+      setTaskTitle("");
+    }
   };
   return (
     <TaskSearchBar onSubmit={handleSubmit}>
