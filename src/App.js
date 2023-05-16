@@ -6,6 +6,9 @@ import TaskList from "./components/TaskList";
 function App() {
   const [tasks, setTasks] = useState([]);
 
+  const [filter, setFilter] = useState('all');
+
+
   const editTaskById = (id, newTitle) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id === id) {

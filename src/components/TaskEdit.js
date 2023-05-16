@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styled from "styled-components";
 
-const TaskEditBar = styled.form`
+const TaskEditBar = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: stretch;

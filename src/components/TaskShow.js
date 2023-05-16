@@ -14,37 +14,45 @@ const TaskItem = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-style:solid;
-  border-width:1px;
+  border-style: solid;
+  border-width: 1px;
+`;
+const Title = styled(Typography)`
+  text-decoration: ${({ isDeleted }) => (isDeleted ? "line-through" : "none")};
 `;
 
 function TaskShow({ task, onDelete, onEdit }) {
   const [showEdit, setShowEdit] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const handleEditClick = () => {
     setShowEdit(!showEdit);
   };
 
-  const handleSubmit=(id,newTitle)=>{
+  const handleSubmit = (id, newTitle) => {
     setShowEdit(false);
-    onEdit(id,newTitle)
-  }
+    onEdit(id, newTitle);
+  };
 
   let content = <h4>{task.taskTitle}</h4>;
   if (showEdit) {
-    content = <TaskEdit onSubmit={handleSubmit} task={task}/>;
+    content = <TaskEdit onSubmit={handleSubmit} task={task} />;
   }
 
   const handleDeleteClick = () => {
     onDelete(task.id);
   };
 
-  
+  const handleCheckboxChange = (event) => {
+    setIsDeleted(event.target.checked);
+  };
 
   return (
     <TaskItem>
-      <Checkbox />
-      <Typography level="h4">{content}</Typography>
+      <Checkbox checked={isDeleted} onChange={handleCheckboxChange} />
+      <Title isDeleted={isDeleted} level="h4">
+        {content}
+      </Title>
       <Box>
         <Chip
           variant="soft"

@@ -3,7 +3,7 @@ import Sheet from "@mui/joy/Sheet";
 import TaskShow from "./TaskShow";
 
 function TaskList({ tasks, onDelete, onEdit }) {
-  const renderedTasks = tasks.map((task) => {
+  const renderedAllTasks = tasks.map((task) => {
     return (
       <TaskShow onEdit={onEdit} onDelete={onDelete} key={task.id} task={task} />
     );
@@ -11,7 +11,7 @@ function TaskList({ tasks, onDelete, onEdit }) {
 
   return (
     <Sheet variant="outlined">
-      {renderedTasks}
+      {renderedAllTasks}
     </Sheet>
   );
 }
