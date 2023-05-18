@@ -1,13 +1,25 @@
 import { useState } from "react";
 import AddTask from "./components/AddTask";
-import Button from "./components/Bottom.js";
 import TaskList from "./components/TaskList";
+import TaskButton from "./components/TaskButton";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [filterTasks, setFilteredTasks] = useState("all");
 
-  const [filter, setFilter] = useState('all');
-
+  const handleFilterTasks = (filter) => {
+    switch (filter) {
+      case "done":
+        setFilteredTasks(tasks.filter((task) => task.status === "done"));
+        break;
+      case "proceed":
+        setFilteredTasks(tasks.filter((task) => task.status === "proceed"));
+        break;
+      default:
+        setFilteredTasks(tasks);
+        break;
+    }
+  };
 
   const editTaskById = (id, newTitle) => {
     const updatedTasks = tasks.map((task) => {
@@ -32,17 +44,31 @@ function App() {
   const createTask = (taskTitle) => {
     const updatedTasks = [
       ...tasks,
-      { id: Math.round(Math.random() * 9999), taskTitle },
+      {
+        id: Math.random().toString(),
+        taskTitle,
+        status: "proceed",
+      },
     ];
     setTasks(updatedTasks);
   };
+
+  // const handleFilterChange = (selectedFilter) => {
+  //   const updatedTasks = tasks.map((task) => {
+  //     if (task.id === id) {
+  //       return { ...task, status:"done" };
+  //     }
+  //     return task;
+  //   });
+  //   setFilteredButton(selectedFilter);
+  // };
 
   return (
     <div>
       <h1>TO DO LIST</h1>
       <div>
         <AddTask onCreate={createTask} />
-        <Button />
+        <TaskButton defaultValue={filterTasks} onFilterChange={handleFilterTasks} />
         <TaskList
           onEdit={editTaskById}
           tasks={tasks}
