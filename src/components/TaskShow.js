@@ -21,9 +21,8 @@ const Title = styled(Typography)`
   text-decoration: ${({ isDeleted }) => (isDeleted ? "line-through" : "none")};
 `;
 
-function TaskShow({ task, onDelete, onEdit }) {
+function TaskShow({ task, onDelete, onEdit,toggleCheckedBoxById }) {
   const [showEdit, setShowEdit] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
 
   const handleEditClick = () => {
     setShowEdit(!showEdit);
@@ -43,14 +42,17 @@ function TaskShow({ task, onDelete, onEdit }) {
     onDelete(task.id);
   };
 
-  const handleCheckboxChange = (event) => {
-    setIsDeleted(event.target.checked);
+  const handleCheckboxChange = () => {
+    toggleCheckedBoxById(task.id)
   };
 
   return (
     <TaskItem>
-      <Checkbox checked={isDeleted} onChange={handleCheckboxChange} />
-      <Title isDeleted={isDeleted} level="h4">
+      <Checkbox
+        checked={task.status === "done"}
+        onChange={handleCheckboxChange}
+      />
+      <Title isDeleted={task.status === "done"} level="h4">
         {content}
       </Title>
       <Box>

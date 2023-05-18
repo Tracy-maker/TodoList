@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import { Box, Button } from "@mui/material";
 import styled from "styled-components";
 
@@ -11,27 +10,25 @@ const ButtonNavigationBar = styled(Box)`
 `;
 
 function TaskButton({ defaultValue, onFilterChange }) {
-  const filterButtonChangeHandler = (event) => {
-    onFilterChange(event.target.defaultValue);
-  };
-
+  
+console.log("default value",defaultValue);
   return (
     <ButtonNavigationBar>
       <Button
         variant={defaultValue === "all" ? "contained" : "outlined"}
-        onClick={() => filterButtonChangeHandler("all")}
+        onClick={() => onFilterChange("all")}
       >
         All Tasks
       </Button>
       <Button
         variant={defaultValue === "done" ? "contained" : "outlined"}
-        onClick={() => filterButtonChangeHandler("done")}
+        onClick={() => onFilterChange("done")}
       >
         Done
       </Button>
       <Button
         variant={defaultValue === "proceed" ? "contained" : "outlined"}
-        onClick={() => filterButtonChangeHandler("proceed")}
+        onClick={() =>onFilterChange("proceed")}
       >
         Proceed
       </Button>

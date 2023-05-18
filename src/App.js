@@ -5,21 +5,33 @@ import TaskButton from "./components/TaskButton";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [filterTasks, setFilteredTasks] = useState("all");
+  const [filter, setFilter] = useState("all");
+
 
   const handleFilterTasks = (filter) => {
-    switch (filter) {
-      case "done":
-        setFilteredTasks(tasks.filter((task) => task.status === "done"));
-        break;
-      case "proceed":
-        setFilteredTasks(tasks.filter((task) => task.status === "proceed"));
-        break;
-      default:
-        setFilteredTasks(tasks);
-        break;
-    }
+    console.log(filter);
+    setFilter(filter)
+   
   };
+
+    const toggleCheckedBoxById = (id) => {
+     const updatedTasks = tasks.map((task) => {
+    if (task.id === id) {
+      let nextStatus;
+      if(task.status==="done"){
+        nextStatus="proceed"
+      }else{
+        nextStatus="done"
+      }
+      return {
+        ...task,
+        status:nextStatus,
+      };
+    }
+    return task;
+  });
+  setTasks(updatedTasks);
+};
 
   const editTaskById = (id, newTitle) => {
     const updatedTasks = tasks.map((task) => {
@@ -53,25 +65,26 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  // const handleFilterChange = (selectedFilter) => {
-  //   const updatedTasks = tasks.map((task) => {
-  //     if (task.id === id) {
-  //       return { ...task, status:"done" };
-  //     }
-  //     return task;
-  //   });
-  //   setFilteredButton(selectedFilter);
-  // };
+
+
+let filteredTasks = tasks;
+if (filter !== "all") {
+    filteredTasks = tasks.filter((task) => task.status === filter);
+}
+  // const filteredTasks = filter === "all" ? tasks : tasks.filter((task) => task.status === filter);
+
+
 
   return (
     <div>
       <h1>TO DO LIST</h1>
       <div>
         <AddTask onCreate={createTask} />
-        <TaskButton defaultValue={filterTasks} onFilterChange={handleFilterTasks} />
+        <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
         <TaskList
+          toggleCheckedBoxById={toggleCheckedBoxById}
           onEdit={editTaskById}
-          tasks={tasks}
+          tasks={filteredTasks}
           onDelete={deleteTaskById}
         />
       </div>
