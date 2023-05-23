@@ -9,31 +9,28 @@ const ButtonNavigationBar = styled(Box)`
   padding: 10px;
 `;
 
-function TaskButton({ defaultValue, onFilterChange }) {
-  
-console.log("default value",defaultValue);
+function TaskButton(props) {
   return (
     <ButtonNavigationBar>
       <Button
-        variant={defaultValue === "all" ? "contained" : "outlined"}
-        onClick={() => onFilterChange("all")}
+        variant={props.defaultValue === "all" ? "contained" : "outlined"}
+        onClick={() => props.onFilterChange("all")}
       >
         All Tasks
       </Button>
       <Button
-        variant={defaultValue === "done" ? "contained" : "outlined"}
-        onClick={() => onFilterChange("done")}
+        variant={props.defaultValue === "done" ? "contained" : "outlined"}
+        onClick={() => props.onFilterChange("done")}
       >
         Done
       </Button>
       <Button
-        variant={defaultValue === "proceed" ? "contained" : "outlined"}
-        onClick={() =>onFilterChange("proceed")}
+        variant={props.defaultValue === "inProgress" ? "contained" : "outlined"}
+        onClick={() => props.onFilterChange("inProgress")}
       >
-        Proceed
+        In Progress
       </Button>
     </ButtonNavigationBar>
   );
 }
-
 export default TaskButton;

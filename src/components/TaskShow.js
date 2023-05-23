@@ -9,7 +9,7 @@ import { Box } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import TaskEdit from "./TaskEdit";
 
-const TaskItem = styled.div`
+const TaskItem = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,60 +17,58 @@ const TaskItem = styled.div`
   border-style: solid;
   border-width: 1px;
 `;
+
 const Title = styled(Typography)`
   text-decoration: ${({ isDeleted }) => (isDeleted ? "line-through" : "none")};
 `;
 
-function TaskShow({ task, onDelete, onEdit,toggleCheckedBoxById }) {
+function TaskShow(props) {
   const [showEdit, setShowEdit] = useState(false);
 
-  const handleEditClick = () => {
+  const handleEdit = () => {
     setShowEdit(!showEdit);
   };
 
   const handleSubmit = (id, newTitle) => {
     setShowEdit(false);
-    onEdit(id, newTitle);
+    props.onEdit(id, newTitle);
   };
 
-  let content = <h4>{task.taskTitle}</h4>;
+  let content = <h3>{props.task.title}</h3>;
   if (showEdit) {
-    content = <TaskEdit onSubmit={handleSubmit} task={task} />;
+    content = <TaskEdit onSubmit={handleSubmit} task={props.task} />;
   }
 
-  const handleDeleteClick = () => {
-    onDelete(task.id);
+  const handleDelete = () => {
+    props.onDelete(props.task.id);
   };
 
   const handleCheckboxChange = () => {
-    toggleCheckedBoxById(task.id)
+    props.toggleCheckedBoxById(props.task.id);
   };
 
   return (
     <TaskItem>
       <Checkbox
-        checked={task.status === "done"}
+        checked={props.task.status === "done"}
         onChange={handleCheckboxChange}
       />
-      <Title isDeleted={task.status === "done"} level="h4">
+      <Title isDeleted={props.task.status === "done"} level="h4">
         {content}
       </Title>
       <Box>
         <Chip
           variant="soft"
           color="success"
-          onClick={handleEditClick}
+          onClick={handleEdit}
           endDecorator={<EditIcon />}
-        >
-          Edit
-        </Chip>
+        />
+
         <Chip
           variant="soft"
           color="danger"
-          endDecorator={<ChipDelete onClick={handleDeleteClick} />}
-        >
-          Delete
-        </Chip>
+          endDecorator={<ChipDelete onClick={handleDelete} />}
+        />
       </Box>
     </TaskItem>
   );

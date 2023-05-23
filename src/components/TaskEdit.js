@@ -9,18 +9,17 @@ const TaskEditBar = styled.form`
   justify-content: flex-start;
   align-items: stretch;
 `;
-
-function TaskEdit({ task,onSubmit}) {
-  const [title, setTitle] = useState(task.taskTitle);
-
-  const handleChange = (event) => {
+function TaskEdit(props) {
+  const [title, setTitle]=useState(props.task.title);
+  
+  const handleChange=(event)=>{
     setTitle(event.target.value);
-  };
+  }
 
-  const handleSubmit = (event) => {
+  const handleSubmit=(event)=>{
     event.preventDefault();
-    onSubmit(task.id,title);
-  };
+    props.onSubmit(props.task.id,title)
+  }
 
   return (
     <TaskEditBar onSubmit={handleSubmit}>

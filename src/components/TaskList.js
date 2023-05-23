@@ -1,26 +1,27 @@
 import * as React from "react";
-import Sheet from "@mui/joy/Sheet";
+import { Paper, Box } from "@mui/material";
 import TaskShow from "./TaskShow";
 
 
-function TaskList({ tasks, onDelete, onEdit, toggleCheckedBoxById }) {
-  const renderedAllTasks = tasks.map((task) => {
+
+function TaskList(props) {
+
+  const renderedTasksList = props.tasks.map((task) => {
     return (
       <TaskShow
-        onEdit={onEdit}
-        onDelete={onDelete}
         key={task.id}
         task={task}
-        toggleCheckedBoxById={toggleCheckedBoxById}
+        onDelete={props.onDelete}
+        onEdit={props.onEdit}
+        toggleCheckedBoxById={props.toggleCheckedBoxById}
       />
     );
   });
 
   return (
-    <>
-      <Sheet variant="outlined">{renderedAllTasks}</Sheet>
-    </>
+    <Box mb={2}>
+      <Paper variant="outlined">{renderedTasksList}</Paper>
+    </Box>
   );
 }
-
 export default TaskList;
