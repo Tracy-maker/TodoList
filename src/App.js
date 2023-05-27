@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect, useContext } from "react";
 import CreateTask from "./components/CreateTask";
 import TaskList from "./components/TaskList";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import Typography from "@mui/joy/Typography";
 import TaskButton from "./components/TaskButton";
+import TasksContext from "./context/tasks";
 
 const TaskForm = styled(Box)`
   display: flex;
@@ -14,51 +14,14 @@ const TaskForm = styled(Box)`
   align-items: stretch;
 `;
 function App() {
+
+  const {fetchTask}=useContext(TasksContext)
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
-
-  const fetchTask = async () => {
-    const response = await axios.get("http://localhost:3001/tasks");
-    setTasks(response.data);
-  };
-
+  
   useEffect(() => {
     fetchTask();
-  }, []);
-
-  const createTask = async (title) => {
-    const response = await axios.post("http://localhost:3001/tasks", {
-      title,
-      status: "inProgress",
-    });
-    const updatedTasks = [...tasks, response.data];
-    setTasks(updatedTasks);
-  };
-
-  const deleteTasksById = async (id) => {
-    await axios.delete(`http://localhost:3001/tasks/${id}`);
-    const updatedTasks = tasks.filter((task) => {
-      return task.id !== id;
-    });
-    setTasks(updatedTasks);
-  };
-
-  const editTaskById = async (id, newTitle) => {
-    const response = await axios.put(`http://localhost:3001/tasks/${id}`, {
-      title: newTitle,
-    });
-
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        return {
-          ...task,
-          ...response.data,
-        };
-      }
-      return tasks;
-    });
-    setTasks(updatedTasks);
-  };
+  }, [fetchTask]);
 
   const handleFilterTasks = (filter) => {
     setFilter(filter);
@@ -97,10 +60,8 @@ function App() {
       <TaskList
         toggleCheckedBoxById={toggleCheckedBoxById}
         tasks={filteredTasks}
-        onDelete={deleteTasksById}
-        onEdit={editTaskById}
       />
-      <CreateTask onCreate={createTask} />
+      <CreateTask />
     </TaskForm>
   );
 }
