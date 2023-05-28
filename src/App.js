@@ -56,7 +56,7 @@ function App() {
         My Daily To Do List
       </Typography>
       <Typography variant="h1" component="h1">
-        {new Date().toISOString()}
+        {new Date().toLocaleDateString()}
       </Typography>
       <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
       <TaskList
