@@ -14,11 +14,10 @@ const TaskForm = styled(Box)`
   align-items: stretch;
 `;
 function App() {
-
-  const {fetchTask}=useContext(TasksContext)
+  const { fetchTask } = useContext(TasksContext);
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
-  
+
   useEffect(() => {
     fetchTask();
   }, [fetchTask]);
@@ -55,6 +54,9 @@ function App() {
     <TaskForm>
       <Typography variant="h1" component="h1">
         My Daily To Do List
+      </Typography>
+      <Typography variant="h1" component="h1">
+        {new Date().toISOString()}
       </Typography>
       <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
       <TaskList
