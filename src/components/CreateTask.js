@@ -7,7 +7,7 @@ import useTaskContext from "../hooks/use-tasks-context";
 
 function CreateTask() {
   const [title, setTitle] = useState("");
-  const { CreateTask } = useTaskContext();
+  const { createTask } = useTaskContext();
 
   const handleChange = (event) => {
     setTitle(event.target.value);
@@ -16,7 +16,7 @@ function CreateTask() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (title.trim() !== "") {
-      CreateTask(title);
+      createTask(title);
       setTitle("");
     }
   };
