@@ -46,7 +46,24 @@ function Provider({ children }) {
     setTasks(updatedTasks);
   };
 
- 
+  const toggleCheckedBoxById = (id) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        let nextStatus;
+        if (task.status === "done") {
+          nextStatus = "inProgress";
+        } else {
+          nextStatus = "done";
+        }
+        return {
+          ...task,
+          status: nextStatus,
+        };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
 
   const valueToShare = {
     tasks,
@@ -54,6 +71,7 @@ function Provider({ children }) {
     editTaskById,
     createTask,
     fetchTask,
+    toggleCheckedBoxById,
   };
 
   return (

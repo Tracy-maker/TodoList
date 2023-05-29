@@ -31,24 +31,6 @@ function App() {
     filteredTasks = tasks.filter((task) => task.status === filter);
   }
 
-  const toggleCheckedBoxById = (id) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        let nextStatus;
-        if (task.status === "done") {
-          nextStatus = "inProgress";
-        } else {
-          nextStatus = "done";
-        }
-        return {
-          ...task,
-          status: nextStatus,
-        };
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
-  };
 
   return (
     <TaskForm>
@@ -60,7 +42,7 @@ function App() {
       </Typography>
       <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
       <TaskList
-        toggleCheckedBoxById={toggleCheckedBoxById}
+      
         tasks={filteredTasks}
       />
       <CreateTask />
