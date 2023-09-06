@@ -3,10 +3,11 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useState } from "react";
+import useTaskContext from "../hooks/use-tasks-context";
 
-
-function CreateTask(props) {
+function CreateTask() {
   const [title, setTitle] = useState("");
+  const { createTask } = useTaskContext();
 
   const handleChange = (event) => {
     setTitle(event.target.value);
@@ -15,7 +16,7 @@ function CreateTask(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (title.trim() !== "") {
-      props.onCreate(title);
+      createTask(title);
       setTitle("");
     }
   };

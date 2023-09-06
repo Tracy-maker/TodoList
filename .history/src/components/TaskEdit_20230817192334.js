@@ -3,6 +3,7 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styled from "styled-components";
+import useTaskContext from "../hooks/use-tasks-context";
 
 const TaskEditBar = styled.form`
   display: flex;
@@ -10,16 +11,18 @@ const TaskEditBar = styled.form`
   align-items: stretch;
 `;
 function TaskEdit(props) {
-  const [title, setTitle]=useState(props.task.title);
-  
-  const handleChange=(event)=>{
-    setTitle(event.target.value);
-  }
+  const [title, setTitle] = useState(props.task.title);
+  const { editTaskById } = useTaskContext();
 
-  const handleSubmit=(event)=>{
+  const handleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    props.onSubmit(props.task.id,title)
-  }
+    props.onSubmit();
+    editTaskById(props.task.id, title);
+  };
 
   return (
     <TaskEditBar onSubmit={handleSubmit}>

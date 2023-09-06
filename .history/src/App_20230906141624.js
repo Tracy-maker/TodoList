@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import CreateTask from "./components/CreateTask";
 import TaskList from "./components/TaskList";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import Typography from "@mui/joy/Typography";
 import TaskButton from "./components/TaskButton";
+import axios from "axios";
 
 const TaskForm = styled(Box)`
   display: flex;
@@ -19,9 +19,8 @@ function App() {
 
   const fetchTask = async () => {
     const response = await axios.get("http://localhost:3001/tasks");
-    setTasks(response.data);
+    setTasks(response);
   };
-
   useEffect(() => {
     fetchTask();
   }, []);
@@ -31,16 +30,16 @@ function App() {
       title,
       status: "inProgress",
     });
-    const updatedTasks = [...tasks, response.data];
-    setTasks(updatedTasks);
+    const updateTasks = [...tasks, response.data];
+    setTasks(updateTasks);
   };
 
   const deleteTasksById = async (id) => {
     await axios.delete(`http://localhost:3001/tasks/${id}`);
-    const updatedTasks = tasks.filter((task) => {
+    const updateTasks = tasks.filter((task) => {
       return task.id !== id;
     });
-    setTasks(updatedTasks);
+    setTasks(updateTasks);
   };
 
   const editTaskById = async (id, newTitle) => {
@@ -48,8 +47,8 @@ function App() {
       title: newTitle,
     });
 
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
+    const updateTasks = tasks.map((task) => {
+      if (task.id !== id) {
         return {
           ...task,
           ...response.data,
@@ -57,9 +56,8 @@ function App() {
       }
       return tasks;
     });
-    setTasks(updatedTasks);
+    setTasks(updateTasks);
   };
-
   const handleFilterTasks = (filter) => {
     setFilter(filter);
   };

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { Box } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import TaskEdit from "./TaskEdit";
+import useTaskContext from "../hooks/use-tasks-context";
 
 const TaskItem = styled(Box)`
   display: flex;
@@ -24,14 +25,14 @@ const Title = styled(Typography)`
 
 function TaskShow(props) {
   const [showEdit, setShowEdit] = useState(false);
+  const { deleteTasksById, toggleCheckedBoxById } = useTaskContext();
 
   const handleEdit = () => {
     setShowEdit(!showEdit);
   };
 
-  const handleSubmit = (id, newTitle) => {
+  const handleSubmit = () => {
     setShowEdit(false);
-    props.onEdit(id, newTitle);
   };
 
   let content = <h3>{props.task.title}</h3>;
@@ -40,11 +41,11 @@ function TaskShow(props) {
   }
 
   const handleDelete = () => {
-    props.onDelete(props.task.id);
+    deleteTasksById(props.task.id);
   };
 
   const handleCheckboxChange = () => {
-    props.toggleCheckedBoxById(props.task.id);
+    toggleCheckedBoxById(props.task.id);
   };
 
   return (
