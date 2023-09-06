@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Box, Button } from "@mui/material";
+import { Paper, Box, Button } from "@mui/material";
+import TaskShow from "./TaskShow";
 import styled from "styled-components";
 
 const ButtonNavigationBar = styled(Box)`
@@ -9,8 +10,21 @@ const ButtonNavigationBar = styled(Box)`
   padding: 10px;
 `;
 
-function TaskButton(props) {
+function TaskManager(props) {
+  const renderedTasksList = props.tasks.map((task) => {
+    return (
+      <TaskShow
+        key={task.id}
+        task={task}
+        onDelete={props.onDelete}
+        onEdit={props.onEdit}
+        toggleCheckedBoxById={props.toggleCheckedBoxById}
+      />
+    );
+  });
+
   return (
+    <>
     <ButtonNavigationBar>
       <Button
         variant={props.defaultValue === "all" ? "contained" : "outlined"}
@@ -31,6 +45,11 @@ function TaskButton(props) {
         In Progress
       </Button>
     </ButtonNavigationBar>
+     <Box mb={2}>
+     <Paper variant="outlined">{renderedTasksList}</Paper>
+   </Box>
+   </>
   );
-}
-export default TaskButton;
+  }
+
+export default TaskManager;

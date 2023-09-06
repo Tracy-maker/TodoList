@@ -5,6 +5,7 @@ import TaskManager from "./components/TaskManager";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import Typography from "@mui/joy/Typography";
+import TaskButton from "./components/TaskButton";
 
 const TaskForm = styled(Box)`
   display: flex;
@@ -91,6 +92,7 @@ function App() {
     <>
       <Typography variant="h1">My Daily To Do List</Typography>
       <TaskForm>
+        <TaskButton />
         <TaskManager
           defaultValue={filter}
           onFilterChange={handleFilterTasks}

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CreateTask from "./components/CreateTask";
-import TaskManager from "./components/TaskManager";
+import TaskList from "./components/TaskList";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import Typography from "@mui/joy/Typography";
+import TaskButton from "./components/TaskButton";
 
 const TaskForm = styled(Box)`
   display: flex;
@@ -88,20 +89,19 @@ function App() {
   };
 
   return (
-    <>
-      <Typography variant="h1">My Daily To Do List</Typography>
-      <TaskForm>
-        <TaskManager
-          defaultValue={filter}
-          onFilterChange={handleFilterTasks}
-          toggleCheckedBoxById={toggleCheckedBoxById}
-          tasks={filteredTasks}
-          onDelete={deleteTasksById}
-          onEdit={editTaskById}
-        />
-        <CreateTask onCreate={createTask} />
-      </TaskForm>
-    </>
+    <TaskForm>
+      <Typography variant="h1">
+        My Daily To Do List
+      </Typography>
+      <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
+      <TaskList
+        toggleCheckedBoxById={toggleCheckedBoxById}
+        tasks={filteredTasks}
+        onDelete={deleteTasksById}
+        onEdit={editTaskById}
+      />
+      <CreateTask onCreate={createTask} />
+    </TaskForm>
   );
 }
 export default App;
