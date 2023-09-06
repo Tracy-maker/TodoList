@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CreateTask from "./components/CreateTask";
-import TaskList from "./components/TaskList";
+import TaskManager from "./components/TaskManager";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import Typography from "@mui/joy/Typography";
-import TaskButton from "./components/TaskButton";
 
 const TaskForm = styled(Box)`
   display: flex;
@@ -15,7 +14,7 @@ const TaskForm = styled(Box)`
 `;
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [filter, setFilter] = useState("all");
+ 
 
   const fetchTask = async () => {
     const response = await axios.get("http://localhost:3001/tasks");
@@ -89,19 +88,19 @@ function App() {
   };
 
   return (
-    <TaskForm>
-      <Typography variant="h1">
-        My Daily To Do List
-      </Typography>
-      <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
-      <TaskList
-        toggleCheckedBoxById={toggleCheckedBoxById}
-        tasks={filteredTasks}
-        onDelete={deleteTasksById}
-        onEdit={editTaskById}
-      />
-      <CreateTask onCreate={createTask} />
-    </TaskForm>
+    <>
+      <Typography variant="h1">My Daily To Do List</Typography>
+      <TaskForm>
+        <TaskManager
+          onFilterChange={handleFilterTasks}
+          toggleCheckedBoxById={toggleCheckedBoxById}
+          tasks={filteredTasks}
+          onDelete={deleteTasksById}
+          onEdit={editTaskById}
+        />
+        <CreateTask onCreate={createTask} />
+      </TaskForm>
+    </>
   );
 }
 export default App;

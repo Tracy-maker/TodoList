@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CreateTask from "./components/CreateTask";
-import TaskList from "./components/TaskList";
+import TaskManager from "./components/TaskList";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import Typography from "@mui/joy/Typography";
-import TaskButton from "./components/TaskButton";
 
 const TaskForm = styled(Box)`
   display: flex;
@@ -15,7 +14,6 @@ const TaskForm = styled(Box)`
 `;
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [filter, setFilter] = useState("all");
 
   const fetchTask = async () => {
     const response = await axios.get("http://localhost:3001/tasks");
@@ -60,48 +58,18 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  const handleFilterTasks = (filter) => {
-    setFilter(filter);
-  };
-
-  let filteredTasks = tasks;
-  if (filter !== "all") {
-    filteredTasks = tasks.filter((task) => task.status === filter);
-  }
-
-  const toggleCheckedBoxById = (id) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        let nextStatus;
-        if (task.status === "done") {
-          nextStatus = "inProgress";
-        } else {
-          nextStatus = "done";
-        }
-        return {
-          ...task,
-          status: nextStatus,
-        };
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
-  };
-
   return (
-    <TaskForm>
-      <Typography variant="h1">
-        My Daily To Do List
-      </Typography>
-      <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
-      <TaskList
-        toggleCheckedBoxById={toggleCheckedBoxById}
-        tasks={filteredTasks}
-        onDelete={deleteTasksById}
-        onEdit={editTaskById}
-      />
-      <CreateTask onCreate={createTask} />
-    </TaskForm>
+    <>
+      <Typography variant="h1">My Daily To Do List</Typography>
+      <TaskForm>
+        <TaskManager
+          tasks={tasks}
+          onDelete={deleteTasksById}
+          onEdit={editTaskById}
+        />
+        <CreateTask onCreate={createTask} />
+      </TaskForm>
+    </>
   );
 }
 export default App;
