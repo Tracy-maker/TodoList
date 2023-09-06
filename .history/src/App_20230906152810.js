@@ -89,15 +89,7 @@ function App() {
   };
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        minWidth: 800,
-        "@media (max-width: 1000px)": {
-          minWidth: "100%",
-        },
-      }}
-    >
+    <Box lg={{ width: "100%", maxWidth: 500 }}>
       <Typography variant="h1">My Daily To Do List</Typography>
       <TaskForm>
         <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />

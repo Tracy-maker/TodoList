@@ -89,27 +89,22 @@ function App() {
   };
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        minWidth: 800,
-        "@media (max-width: 1000px)": {
-          minWidth: "100%",
-        },
-      }}
-    >
-      <Typography variant="h1">My Daily To Do List</Typography>
-      <TaskForm>
-        <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
-        <TaskList
-          toggleCheckedBoxById={toggleCheckedBoxById}
-          tasks={filteredTasks}
-          onDelete={deleteTasksById}
-          onEdit={editTaskById}
-        />
-        <CreateTask onCreate={createTask} />
-      </TaskForm>
-    </Box>
+    <>
+    <Typography variant="h1">
+    My Daily To Do List
+  </Typography>
+    <TaskForm>
+     
+      <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
+      <TaskList
+        toggleCheckedBoxById={toggleCheckedBoxById}
+        tasks={filteredTasks}
+        onDelete={deleteTasksById}
+        onEdit={editTaskById}
+      />
+      <CreateTask onCreate={createTask} />
+    </TaskForm>
+    </>
   );
 }
 export default App;

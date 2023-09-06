@@ -92,8 +92,8 @@ function App() {
     <Box
       sx={{
         width: "100%",
-        minWidth: 800,
-        "@media (max-width: 1000px)": {
+        minWidth: 1000,
+        "@media (max-width: 600px)": {
           minWidth: "100%",
         },
       }}
