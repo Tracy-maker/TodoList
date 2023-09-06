@@ -35,7 +35,7 @@ function App() {
     setTasks(updateTasks);
   };
 
-  const deleteTasksById = async (id) => {
+  const deleteTaskById = async (id) => {
     await axios.delete(`http://localhost:3001/tasks/${id}`);
     const updateTasks = tasks.filter((task) => {
       return task.id !== id;
@@ -59,17 +59,14 @@ function App() {
     });
     setTasks(updateTasks);
   };
+
   const handleFilterTasks = (filter) => {
     setFilter(filter);
   };
 
-  let filteredTasks = tasks;
+  let filterTasks = tasks;
   if (filter !== "all") {
-    filteredTasks = tasks.filter((task) => task.status === filter);
-  }
-
-  const toggleCheckedBoxById = (id) => {
-    const updatedTasks = tasks.map((task) => {
+    filterTasks = tasks.filter((task) => {
       if (task.id === id) {
         let nextStatus;
         if (task.status === "done") {
@@ -85,21 +82,19 @@ function App() {
       return task;
     });
     setTasks(updatedTasks);
-  };
+  }
 
   return (
     <TaskForm>
       <Typography variant="h1" component="h1">
         My Daily To Do List
       </Typography>
+      <Typography variant="h1" component="h1">
+        {new Date().toLocaleDateString()}
+      </Typography>
       <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
-      <TaskList
-        toggleCheckedBoxById={toggleCheckedBoxById}
-        tasks={filteredTasks}
-        onDelete={deleteTasksById}
-        onEdit={editTaskById}
-      />
-      <CreateTask onCreate={createTask} />
+      <TaskList tasks={filteredTasks} />
+      <CreateTask />
     </TaskForm>
   );
 }
