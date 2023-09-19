@@ -20,12 +20,10 @@ const StyledContainer = styled(Stack)`
 `;
 
 const TaskForm = styled(Box)`
-  margin-left: auto;
-  margin-right: auto;
-  width: 900px;
-  background-color: white;
-  border-radius: 35px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  align-items: stretch;
 `;
 function App() {
   const [tasks, setTasks] = useState([]);

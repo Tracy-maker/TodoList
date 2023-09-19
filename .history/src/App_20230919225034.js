@@ -25,6 +25,7 @@ const TaskForm = styled(Box)`
   width: 900px;
   background-color: white;
   border-radius: 35px;
+  box-shadow: 0 0 16px rgb(0 0 0 / 90%);
   overflow: hidden;
 `;
 function App() {

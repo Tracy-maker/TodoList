@@ -2,30 +2,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import CreateTask from "./components/CreateTask";
 import TaskList from "./components/TaskList";
-import { Box, Stack } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import styled from "styled-components";
 import Typography from "@mui/joy/Typography";
 import TaskButton from "./components/TaskButton";
-import Image1 from "./image/7.jpg";
-
-const StyledContainer = styled(Stack)`
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  background-image: url(${Image1});
-  background-size: cover;
-  background-repeat: no-repeat;
-`;
+import Image1 from "../public/7.jpg";
 
 const TaskForm = styled(Box)`
-  margin-left: auto;
-  margin-right: auto;
-  width: 900px;
-  background-color: white;
-  border-radius: 35px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-image: url(${Image1});
+  align-items: stretch;
 `;
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -103,7 +90,7 @@ function App() {
   };
 
   return (
-    <StyledContainer>
+    <Container maxWidth="xl">
       <Typography>My Daily To Do List</Typography>
       <TaskForm>
         <TaskList
@@ -115,7 +102,7 @@ function App() {
         <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
         <CreateTask onCreate={createTask} />
       </TaskForm>
-    </StyledContainer>
+    </Container>
   );
 }
 export default App;
