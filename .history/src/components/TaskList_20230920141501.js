@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Box, Button, Card } from "@mui/material";
 import TaskShow from "./TaskShow";
 import styled from "styled-components";
@@ -11,19 +11,9 @@ const ButtonNavigationBar = styled(Box)`
 `;
 
 function TaskList(props) {
-  const renderedTasksList = props.tasks.map((task) => (
-    <TaskShow
-      key={task.id}
-      task={task}
-      onDelete={props.onDelete}
-      onEdit={props.onEdit}
-      toggleCheckedBoxById={props.toggleCheckedBoxById}
-    />
-  ));
-
-  return (
-    <Box mb={2}>
-      <Card>
+  const renderedTasksList = props.tasks.map((task) => {
+    return (
+      <>
         <ButtonNavigationBar>
           <Button
             variant={props.defaultValue === "all" ? "contained" : "outlined"}
@@ -46,10 +36,24 @@ function TaskList(props) {
             In Progress
           </Button>
         </ButtonNavigationBar>
-        {renderedTasksList}
-      </Card>
+        
+      </>
+    );
+    return (
+      <TaskShow
+        key={task.id}
+        task={task}
+        onDelete={props.onDelete}
+        onEdit={props.onEdit}
+        toggleCheckedBoxById={props.toggleCheckedBoxById}
+      />
+    );
+  });
+
+  return (
+    <Box mb={2}>
+      <Card>{renderedTasksList}</Card>
     </Box>
   );
 }
-
 export default TaskList;

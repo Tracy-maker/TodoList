@@ -5,7 +5,7 @@ import TaskList from "./components/TaskList";
 import { Box, Stack } from "@mui/material";
 import styled from "styled-components";
 import Typography from "@mui/material/Typography";
-
+import TaskButton from "./components/TaskButton";
 import Image1 from "./image/7.jpg";
 
 const StyledContainer = styled(Stack)`
@@ -124,9 +124,9 @@ function App() {
           tasks={filteredTasks}
           onDelete={deleteTasksById}
           onEdit={editTaskById}
-          defaultValue={filter}
-          onFilterChange={handleFilterTasks}
+          defaultValue={filter} onFilterChange={handleFilterTasks}
         />
+        <TaskButton  />
       </TaskForm>
     </StyledContainer>
   );

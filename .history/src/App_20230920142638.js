@@ -124,8 +124,7 @@ function App() {
           tasks={filteredTasks}
           onDelete={deleteTasksById}
           onEdit={editTaskById}
-          defaultValue={filter}
-          onFilterChange={handleFilterTasks}
+          defaultValue={filter} onFilterChange={handleFilterTasks}
         />
       </TaskForm>
     </StyledContainer>

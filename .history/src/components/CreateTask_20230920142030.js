@@ -19,23 +19,17 @@ const AddButton = styled(Button)`
 
 function CreateTask(props) {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState();
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    if (name === "title") {
-      setTitle(value);
-    } else if (name === "description") {
-      setDescription(value);
-    }
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleTitleSubmit = (event) => {
     event.preventDefault();
-    if (title.trim() !== "" || description.trim() !== "") {
-      props.onCreate({ title, description });
+    if (title.trim() !== "") {
+      props.onCreate(title);
       setTitle("");
-      setDescription("");
     }
   };
 
@@ -43,13 +37,13 @@ function CreateTask(props) {
     <Stack onSubmit={handleSubmit} component="form" direction="row">
       <Input
         value={title}
-        onChange={handleChange}
+        onChange={handleTitleChange}
         placeholder="Add a title"
         variant="filled"
       />
       <Input
         value={description}
-        onChange={handleChange}
+        onChange={handleTitleSubmit}
         placeholder="Add description"
         variant="filled"
       />

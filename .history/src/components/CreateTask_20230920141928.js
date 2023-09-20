@@ -19,23 +19,17 @@ const AddButton = styled(Button)`
 
 function CreateTask(props) {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState();
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    if (name === "title") {
-      setTitle(value);
-    } else if (name === "description") {
-      setDescription(value);
-    }
+    setTitle(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (title.trim() !== "" || description.trim() !== "") {
-      props.onCreate({ title, description });
+    if (title.trim() !== "") {
+      props.onCreate(title);
       setTitle("");
-      setDescription("");
     }
   };
 
@@ -48,7 +42,7 @@ function CreateTask(props) {
         variant="filled"
       />
       <Input
-        value={description}
+        value={title}
         onChange={handleChange}
         placeholder="Add description"
         variant="filled"

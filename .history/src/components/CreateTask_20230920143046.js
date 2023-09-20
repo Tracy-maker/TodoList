@@ -43,13 +43,13 @@ function CreateTask(props) {
     <Stack onSubmit={handleSubmit} component="form" direction="row">
       <Input
         value={title}
-        onChange={handleChange}
+        onChange={handleTitleChange}
         placeholder="Add a title"
         variant="filled"
       />
       <Input
         value={description}
-        onChange={handleChange}
+        onChange={handleDescriptionChange}
         placeholder="Add description"
         variant="filled"
       />
