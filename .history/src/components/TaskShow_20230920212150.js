@@ -54,12 +54,12 @@ function TaskShow(props) {
     console.log(props.task);
     content = (
       <>
-        <TaskInformation variant="h5" isDeleted={props.task.status === "done"}>
-          {props.task.title}
-        </TaskInformation>
-        <TaskInformation variant="h7" isDeleted={props.task.status === "done"}>
-          {props.task.description}
-        </TaskInformation>
+        <div variant="h5" isDeleted={props.task.status === "done"}>
+          {/* {props.task.title} */}
+        </div>
+        <div variant="h7" isDeleted={props.task.status === "done"}>
+          {/* {props.task.description} */}
+        </div>
       </>
     );
   }

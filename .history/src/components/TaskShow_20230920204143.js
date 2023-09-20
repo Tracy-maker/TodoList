@@ -27,7 +27,7 @@ const TaskContent = styled(Box)`
   width: 80%;
   padding: 10px;
   align-items: center;
-  gap: 20px;
+  gap: 20px
 `;
 
 const TaskInformation = styled(Typography)`
@@ -48,21 +48,16 @@ function TaskShow(props) {
 
   let content;
 
-  if (showEdit) {
-    content = <TaskEdit onSubmit={handleSubmit} task={props.task} />;
-  } else {
-    console.log(props.task);
-    content = (
-      <>
-        <TaskInformation variant="h5" isDeleted={props.task.status === "done"}>
-          {props.task.title}
-        </TaskInformation>
-        <TaskInformation variant="h7" isDeleted={props.task.status === "done"}>
-          {props.task.description}
-        </TaskInformation>
-      </>
-    );
-  }
+  /* // if (showEdit) {
+  //   content = <TaskEdit onSubmit={handleSubmit} task={props.task} />;
+  // } else {
+  //   content = (
+  //     <>
+  //       <h3>{props.task.title}</h3>
+  //       <p>{props.task.description}</p>
+  //     </>
+  //   );
+  // } */
 
   const handleDelete = () => {
     props.onDelete(props.task.id);
@@ -74,9 +69,10 @@ function TaskShow(props) {
 
   return (
     <TaskItem>
-      <Checkbox checked={props.task.status === "done"} onChange={handleCheckboxChange} />
+      <Checkbox onChange={handleCheckboxChange} />
       <TaskContent>
-        {content}
+        <TaskInformation variant="h5">title</TaskInformation>
+        <TaskInformation variant="h7">description</TaskInformation>
       </TaskContent>
 
       <Box>

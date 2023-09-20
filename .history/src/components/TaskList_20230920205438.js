@@ -13,7 +13,6 @@ function TaskList(props) {
       />
     );
   });
-  console.log(props.tasks);
   return <>{renderedTasksList}</>;
 }
 

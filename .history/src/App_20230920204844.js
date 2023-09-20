@@ -37,7 +37,7 @@ const Title = styled(Typography)`
 `;
 
 function App() {
-  const [filter, setFilter] = useState("all");
+
   const [tasks, setTasks] = useState(() => {
     const localValue = localStorage.getItem("tasks");
     if (localValue == null) return [];

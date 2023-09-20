@@ -51,7 +51,6 @@ function TaskShow(props) {
   if (showEdit) {
     content = <TaskEdit onSubmit={handleSubmit} task={props.task} />;
   } else {
-    console.log(props.task);
     content = (
       <>
         <TaskInformation variant="h5" isDeleted={props.task.status === "done"}>
@@ -75,9 +74,9 @@ function TaskShow(props) {
   return (
     <TaskItem>
       <Checkbox checked={props.task.status === "done"} onChange={handleCheckboxChange} />
-      <TaskContent>
+      {/* <TaskContent>
         {content}
-      </TaskContent>
+      </TaskContent> */}
 
       <Box>
         <Chip

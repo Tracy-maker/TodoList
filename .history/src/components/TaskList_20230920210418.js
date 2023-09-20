@@ -1,5 +1,6 @@
 import React from "react";
 import TaskShow from "./TaskShow";
+import { Box } from "@mui/material";
 
 function TaskList(props) {
   const renderedTasksList = props.tasks.map((task) => {
@@ -13,8 +14,7 @@ function TaskList(props) {
       />
     );
   });
-  console.log(props.tasks);
-  return <>{renderedTasksList}</>;
+  return <Box>{renderedTasksList}</Box>;
 }
 
 export default TaskList;

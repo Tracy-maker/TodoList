@@ -51,15 +51,14 @@ function TaskShow(props) {
   if (showEdit) {
     content = <TaskEdit onSubmit={handleSubmit} task={props.task} />;
   } else {
-    console.log(props.task);
     content = (
       <>
-        <TaskInformation variant="h5" isDeleted={props.task.status === "done"}>
+        <div variant="h5" isDeleted={props.task.status === "done"}>
           {props.task.title}
-        </TaskInformation>
-        <TaskInformation variant="h7" isDeleted={props.task.status === "done"}>
+        </div>
+        <div variant="h7" isDeleted={props.task.status === "done"}>
           {props.task.description}
-        </TaskInformation>
+        </div>
       </>
     );
   }
@@ -76,7 +75,7 @@ function TaskShow(props) {
     <TaskItem>
       <Checkbox checked={props.task.status === "done"} onChange={handleCheckboxChange} />
       <TaskContent>
-        {content}
+        {/* {content} */}
       </TaskContent>
 
       <Box>

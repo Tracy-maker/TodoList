@@ -2,6 +2,7 @@ import React from "react";
 import TaskShow from "./TaskShow";
 
 function TaskList(props) {
+
   const renderedTasksList = props.tasks.map((task) => {
     return (
       <TaskShow
@@ -11,10 +12,11 @@ function TaskList(props) {
         onEdit={props.onEdit}
         toggleCheckedBoxById={props.toggleCheckedBoxById}
       />
+      
     );
   });
-  console.log(props.tasks);
-  return <>{renderedTasksList}</>;
+  console.log(renderedTasksList)
+  return<>{renderedTasksList}</>;
 }
 
 export default TaskList;

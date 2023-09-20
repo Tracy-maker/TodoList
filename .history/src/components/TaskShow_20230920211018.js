@@ -51,7 +51,6 @@ function TaskShow(props) {
   if (showEdit) {
     content = <TaskEdit onSubmit={handleSubmit} task={props.task} />;
   } else {
-    console.log(props.task);
     content = (
       <>
         <TaskInformation variant="h5" isDeleted={props.task.status === "done"}>
@@ -79,7 +78,7 @@ function TaskShow(props) {
         {content}
       </TaskContent>
 
-      <Box>
+      {/* <Box>
         <Chip
           variant="soft"
           color="success"
@@ -91,7 +90,7 @@ function TaskShow(props) {
           color="danger"
           endDecorator={<ChipDelete onClick={handleDelete} />}
         />
-      </Box>
+      </Box> */}
     </TaskItem>
   );
 }
