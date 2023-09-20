@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import Typography from "@mui/material/Typography";
+import Typography from '@mui/material/Typography';
 import Checkbox from "@mui/joy/Checkbox";
 import Chip from "@mui/joy/Chip";
 import ChipDelete from "@mui/joy/ChipDelete";
@@ -23,14 +23,11 @@ const TaskItem = styled(Box)`
 
 const TaskContent = styled(Box)`
   display: flex;
-  margin: auto;
-  width: 80%;
-  padding: 10px;
-  align-items: center;
-  gap: 20px
 `;
 
+
 const TaskInformation = styled(Typography)`
+  
   text-decoration: ${({ isDeleted }) => (isDeleted ? "line-through" : "none")};
 `;
 
@@ -71,8 +68,8 @@ function TaskShow(props) {
     <TaskItem>
       <Checkbox onChange={handleCheckboxChange} />
       <TaskContent>
-        <TaskInformation variant="h5">title</TaskInformation>
-        <TaskInformation variant="h7">description</TaskInformation>
+        <TaskInformation variant="h4">title</TaskInformation>
+        <TaskInformation variant="h6">description</TaskInformation>
       </TaskContent>
 
       <Box>

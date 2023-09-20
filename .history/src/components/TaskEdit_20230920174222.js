@@ -10,33 +10,33 @@ const TaskEditBar = styled.form`
 `;
 
 function TaskEdit(props) {
-  const [formTask, setFormTask] = useState({
+  const [formData, setFormData] = useState({
     title: props.task.title,
     description: props.task.description,
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormTask({ ...formTask, [name]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.onSubmit(props.task.id, formTask.title, formTask.description);
+    props.onSubmit(props.task.id, formData.title, formData.description);
   };
 
   return (
     <TaskEditBar onSubmit={handleSubmit}>
       <TextField
         name="title"
-        value={formTask.title}
+        value={formData.title}
         onChange={handleChange}
         fullWidth
         placeholder="Please edit the task title"
       />
       <TextField
         name="description"
-        value={formTask.description}
+        value={formData.description}
         onChange={handleChange}
         fullWidth
         placeholder="Please edit the task description"

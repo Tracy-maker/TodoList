@@ -6,16 +6,15 @@ import { useState } from "react";
 import { styled } from "@mui/material";
 
 const Input = styled(TextField)`
-  padding:2%;
-  width: 80%;
+  padding: 5%;
+  width: 65%;
 `;
 
 const AddButton = styled(Button)`
   margin: auto;
   width: 20%;
-  padding: 9px;
+  padding: 10px;
   text-align: center;
-  margin-right: 15px;
 `;
 
 function CreateTask(props) {
@@ -42,20 +41,20 @@ function CreateTask(props) {
 
   return (
     <Stack onSubmit={handleSubmit} component="form" direction="row">
-      <Input
-        name="title"
-        value={title}
-        onChange={handleChange}
-        placeholder="Add a title"
-        variant="filled"
-      />
-      <Input
-        name="description"
-        value={description}
-        onChange={handleChange}
-        placeholder="Add description"
-        variant="filled"
-      />
+     <Input
+  name="title"
+  value={title}
+  onChange={handleChange}
+  placeholder="Add a title"
+  variant="filled"
+/>
+<Input
+  name="description"
+  value={description}
+  onChange={handleChange}
+  placeholder="Add description"
+  variant="filled"
+/>
       <AddButton type="submit" variant="contained">
         Add Task
       </AddButton>

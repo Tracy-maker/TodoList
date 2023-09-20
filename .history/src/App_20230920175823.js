@@ -36,7 +36,7 @@ const Title = styled(Typography)`
 `;
 
 function App() {
-
+  const [filter, setFilter] = useState("all");
   const [tasks, setTasks] = useState(() => {
     const localValue = localStorage.getItem("tasks");
     if (localValue == null) return [];
@@ -89,7 +89,33 @@ function App() {
     }
   };
 
+  const handleFilterTasks = (filter) => {
+    setFilter(filter);
+  };
 
+  let filteredTasks = tasks;
+  if (filter !== "all") {
+    filteredTasks = tasks.filter((task) => task.status === filter);
+  }
+
+  const toggleCheckedBoxById = (id) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        let nextStatus;
+        if (task.status === "done") {
+          nextStatus = "inProgress";
+        } else {
+          nextStatus = "done";
+        }
+        return {
+          ...task,
+          status: nextStatus,
+        };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
 
   return (
     <StyledContainer>
@@ -98,7 +124,9 @@ function App() {
       </Title>
       <TaskForm>
         <CreateTask onCreate={createTask} />
-        <TaskList />
+        <TaskList
+          
+        />
       </TaskForm>
     </StyledContainer>
   );

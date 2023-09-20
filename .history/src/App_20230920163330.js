@@ -4,6 +4,7 @@ import TaskList from "./components/TaskList";
 import { Box, Stack } from "@mui/material";
 import styled from "styled-components";
 import Typography from "@mui/material/Typography";
+
 import Image1 from "./image/7.jpg";
 
 const StyledContainer = styled(Stack)`
@@ -36,30 +37,22 @@ const Title = styled(Typography)`
 `;
 
 function App() {
-
-  const [tasks, setTasks] = useState(() => {
-    const localValue = localStorage.getItem("tasks");
-    if (localValue == null) return [];
-    return JSON.parse(localValue);
-  });
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+  const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState("all");
 
   const createTask = (title, description) => {
     const newTask = {
-      id: crypto.randomUUID(),
       title: title,
       description: description,
       status: "inProgress",
     };
-
+  
     const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     existingTasks.push(newTask);
     localStorage.setItem("tasks", JSON.stringify(existingTasks));
     setTasks(existingTasks);
   };
+  
 
   const deleteTasksById = (id) => {
     const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -89,7 +82,33 @@ function App() {
     }
   };
 
+  const handleFilterTasks = (filter) => {
+    setFilter(filter);
+  };
 
+  let filteredTasks = tasks;
+  if (filter !== "all") {
+    filteredTasks = tasks.filter((task) => task.status === filter);
+  }
+
+  const toggleCheckedBoxById = (id) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        let nextStatus;
+        if (task.status === "done") {
+          nextStatus = "inProgress";
+        } else {
+          nextStatus = "done";
+        }
+        return {
+          ...task,
+          status: nextStatus,
+        };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
 
   return (
     <StyledContainer>
@@ -98,7 +117,14 @@ function App() {
       </Title>
       <TaskForm>
         <CreateTask onCreate={createTask} />
-        <TaskList />
+        <TaskList
+          toggleCheckedBoxById={toggleCheckedBoxById}
+          tasks={filteredTasks}
+          onDelete={deleteTasksById}
+          onEdit={editTaskById}
+          defaultValue={filter}
+          onFilterChange={handleFilterTasks}
+        />
       </TaskForm>
     </StyledContainer>
   );

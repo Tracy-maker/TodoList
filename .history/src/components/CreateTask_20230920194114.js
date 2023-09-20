@@ -5,17 +5,17 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { styled } from "@mui/material";
 
+
 const Input = styled(TextField)`
-  padding:2%;
-  width: 80%;
+  padding: 5%;
+  width: 65%;
 `;
 
 const AddButton = styled(Button)`
   margin: auto;
   width: 20%;
-  padding: 9px;
+  padding: 10px;
   text-align: center;
-  margin-right: 15px;
 `;
 
 function CreateTask(props) {

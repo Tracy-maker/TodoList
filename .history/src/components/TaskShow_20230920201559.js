@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import Typography from "@mui/material/Typography";
+import Typography from '@mui/material/Typography';
 import Checkbox from "@mui/joy/Checkbox";
 import Chip from "@mui/joy/Chip";
 import ChipDelete from "@mui/joy/ChipDelete";
@@ -22,15 +22,17 @@ const TaskItem = styled(Box)`
 `;
 
 const TaskContent = styled(Box)`
-  display: flex;
+display: flex;
   margin: auto;
-  width: 80%;
-  padding: 10px;
-  align-items: center;
-  gap: 20px
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+    align-items: center;
 `;
 
+
 const TaskInformation = styled(Typography)`
+  
   text-decoration: ${({ isDeleted }) => (isDeleted ? "line-through" : "none")};
 `;
 

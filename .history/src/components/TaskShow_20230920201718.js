@@ -24,10 +24,10 @@ const TaskItem = styled(Box)`
 const TaskContent = styled(Box)`
   display: flex;
   margin: auto;
-  width: 80%;
+  width: 50%;
+  border: 3px solid green;
   padding: 10px;
   align-items: center;
-  gap: 20px
 `;
 
 const TaskInformation = styled(Typography)`

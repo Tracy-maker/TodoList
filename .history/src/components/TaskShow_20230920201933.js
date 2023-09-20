@@ -27,7 +27,7 @@ const TaskContent = styled(Box)`
   width: 80%;
   padding: 10px;
   align-items: center;
-  gap: 20px
+  gap: 16
 `;
 
 const TaskInformation = styled(Typography)`

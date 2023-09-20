@@ -98,7 +98,9 @@ function App() {
       </Title>
       <TaskForm>
         <CreateTask onCreate={createTask} />
-        <TaskList />
+        <TaskList
+          
+        />
       </TaskForm>
     </StyledContainer>
   );

@@ -5,17 +5,22 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { styled } from "@mui/material";
 
+const Container = styled(Stack)`
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+`;
 const Input = styled(TextField)`
-  padding:2%;
-  width: 80%;
+  padding: 5%;
+  width: 65%;
 `;
 
 const AddButton = styled(Button)`
   margin: auto;
   width: 20%;
-  padding: 9px;
+  padding: 10px;
   text-align: center;
-  margin-right: 15px;
 `;
 
 function CreateTask(props) {
@@ -41,7 +46,7 @@ function CreateTask(props) {
   };
 
   return (
-    <Stack onSubmit={handleSubmit} component="form" direction="row">
+    <Container onSubmit={handleSubmit} component="form" direction="row">
       <Input
         name="title"
         value={title}
@@ -59,7 +64,7 @@ function CreateTask(props) {
       <AddButton type="submit" variant="contained">
         Add Task
       </AddButton>
-    </Stack>
+    </Container>
   );
 }
 

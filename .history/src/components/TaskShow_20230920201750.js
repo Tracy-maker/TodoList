@@ -25,9 +25,9 @@ const TaskContent = styled(Box)`
   display: flex;
   margin: auto;
   width: 80%;
+  
   padding: 10px;
   align-items: center;
-  gap: 20px
 `;
 
 const TaskInformation = styled(Typography)`
