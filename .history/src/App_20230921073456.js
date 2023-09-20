@@ -12,7 +12,7 @@ const StyledContainer = styled(Stack)`
   width: 100%;
   display: flex;
   align-items: stretch;
-  padding-top: 3%;
+  padding-top: 6%;
   background-image: url(${Image1});
   background-size: cover;
   background-repeat: no-repeat;
@@ -109,7 +109,7 @@ function App() {
           nextStatus = "done";
         }
         return {
-          ...task,
+          task,
           status: nextStatus,
         };
       }

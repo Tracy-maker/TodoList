@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const Reminder = styled(Box)`
   text-align: center;
-  padding: ${(props) => (props.noTasks ? "14%" : "0")};
+  padding: ${(props) => (props.noTasks ? "0" : "15px")};
 `;
 
 function TaskList(props) {
