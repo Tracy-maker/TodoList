@@ -100,7 +100,7 @@ function App() {
       <TaskForm>
         <CreateTask onCreate={createTask} />
         <TaskButton/>
-        <TaskList />
+        <TaskList tasks= />
       </TaskForm>
     </StyledContainer>
   );
