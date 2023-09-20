@@ -11,11 +11,8 @@ const Input = styled(TextField)`
 `;
 
 const AddButton = styled(Button)`
-  margin: auto;
-  width: 20%;
-  padding: 10px;
-  text-align: center;
-`;
+padding: 5%;
+`
 
 function CreateTask(props) {
   const [title, setTitle] = useState("");
@@ -46,7 +43,10 @@ function CreateTask(props) {
         placeholder="Add description"
         variant="filled"
       />
-      <AddButton type="submit" variant="contained">
+      <AddButton  
+        type="submit"
+        variant="contained"
+      >
         Add Task
       </AddButton>
     </Stack>

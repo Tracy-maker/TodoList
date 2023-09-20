@@ -13,7 +13,7 @@ const StyledContainer = styled(Stack)`
   width: 100%;
   display: flex;
   align-items: stretch;
-  padding-top: 6%;
+  justify-content: center;
   background-image: url(${Image1});
   background-size: cover;
   background-repeat: no-repeat;
@@ -22,19 +22,16 @@ const StyledContainer = styled(Stack)`
 const TaskForm = styled(Box)`
   margin-left: auto;
   margin-right: auto;
-  width: 1000px;
+  width: 900px;
   background-color: white;
-  border-radius: 15px;
+  border-radius: 35px;
+  overflow: hidden;
   @media (max-width: 768px) {
     width: 100%;
   }
 `;
-const Title = styled(Typography)`
+const title = styled(Typography)`
   color: white;
-  margin: auto;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
 `;
 
 function App() {
@@ -114,11 +111,10 @@ function App() {
 
   return (
     <StyledContainer>
-      <Title variant="h3" gutterBottom>
-        🎃 Todo List 🕯️
-      </Title>
+      <title variant="h3" gutterBottom>
+        h1. Heading
+      </title>
       <TaskForm>
-        <CreateTask onCreate={createTask} />
         <TaskList
           toggleCheckedBoxById={toggleCheckedBoxById}
           tasks={filteredTasks}
@@ -126,6 +122,7 @@ function App() {
           onEdit={editTaskById}
         />
         <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
+        <CreateTask onCreate={createTask} />
       </TaskForm>
     </StyledContainer>
   );

@@ -5,17 +5,10 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { styled } from "@mui/material";
 
-const Input = styled(TextField)`
-  padding: 5%;
-  width: 65%;
-`;
+const Input= styled(TextField)`
+padding: 3%;
+`
 
-const AddButton = styled(Button)`
-  margin: auto;
-  width: 20%;
-  padding: 10px;
-  text-align: center;
-`;
 
 function CreateTask(props) {
   const [title, setTitle] = useState("");
@@ -33,22 +26,23 @@ function CreateTask(props) {
   };
 
   return (
-    <Stack onSubmit={handleSubmit} component="form" direction="row">
+    <Stack onSubmit={handleSubmit} component="form" direction="row" spacing={4}>
       <Input
         value={title}
-        onChange={handleChange}
-        placeholder="Add a title"
+        onChange={handleChange}   
+        placeholder="Add a task"
         variant="filled"
       />
-      <Input
-        value={title}
-        onChange={handleChange}
-        placeholder="Add description"
-        variant="filled"
-      />
-      <AddButton type="submit" variant="contained">
+      <Button
+        sx={{
+          width: "25ch",
+          backgroundColor: "#778899",
+        }}
+        type="submit"
+        variant="contained"
+      >
         Add Task
-      </AddButton>
+      </Button>
     </Stack>
   );
 }

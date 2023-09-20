@@ -11,10 +11,7 @@ const Input = styled(TextField)`
 `;
 
 const AddButton = styled(Button)`
-  margin: auto;
-  width: 20%;
-  padding: 10px;
-  text-align: center;
+  padding: 5%;
 `;
 
 function CreateTask(props) {

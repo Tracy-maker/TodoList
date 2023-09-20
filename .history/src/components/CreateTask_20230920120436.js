@@ -7,14 +7,7 @@ import { styled } from "@mui/material";
 
 const Input = styled(TextField)`
   padding: 5%;
-  width: 65%;
-`;
-
-const AddButton = styled(Button)`
-  margin: auto;
-  width: 20%;
-  padding: 10px;
-  text-align: center;
+  width:60%
 `;
 
 function CreateTask(props) {
@@ -37,18 +30,19 @@ function CreateTask(props) {
       <Input
         value={title}
         onChange={handleChange}
-        placeholder="Add a title"
+        placeholder="Add a task"
         variant="filled"
       />
-      <Input
-        value={title}
-        onChange={handleChange}
-        placeholder="Add description"
-        variant="filled"
-      />
-      <AddButton type="submit" variant="contained">
+      <Button
+        sx={{
+          width: "25ch",
+          backgroundColor: "#778899",
+        }}
+        type="submit"
+        variant="contained"
+      >
         Add Task
-      </AddButton>
+      </Button>
     </Stack>
   );
 }

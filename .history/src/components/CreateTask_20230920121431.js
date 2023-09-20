@@ -13,7 +13,7 @@ const Input = styled(TextField)`
 const AddButton = styled(Button)`
   margin: auto;
   width: 20%;
-  padding: 10px;
+  padding: 120px;
   text-align: center;
 `;
 

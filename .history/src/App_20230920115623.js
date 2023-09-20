@@ -22,7 +22,7 @@ const StyledContainer = styled(Stack)`
 const TaskForm = styled(Box)`
   margin-left: auto;
   margin-right: auto;
-  width: 1000px;
+  width: 950px;
   background-color: white;
   border-radius: 15px;
   @media (max-width: 768px) {

@@ -22,7 +22,7 @@ const StyledContainer = styled(Stack)`
 const TaskForm = styled(Box)`
   margin-left: auto;
   margin-right: auto;
-  width: 1000px;
+  width: 900px;
   background-color: white;
   border-radius: 15px;
   @media (max-width: 768px) {
@@ -118,7 +118,7 @@ function App() {
         🎃 Todo List 🕯️
       </Title>
       <TaskForm>
-        <CreateTask onCreate={createTask} />
+      <CreateTask onCreate={createTask} />
         <TaskList
           toggleCheckedBoxById={toggleCheckedBoxById}
           tasks={filteredTasks}
@@ -126,6 +126,7 @@ function App() {
           onEdit={editTaskById}
         />
         <TaskButton defaultValue={filter} onFilterChange={handleFilterTasks} />
+       
       </TaskForm>
     </StyledContainer>
   );

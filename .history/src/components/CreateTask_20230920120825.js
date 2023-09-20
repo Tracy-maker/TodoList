@@ -10,12 +10,7 @@ const Input = styled(TextField)`
   width: 65%;
 `;
 
-const AddButton = styled(Button)`
-  margin: auto;
-  width: 20%;
-  padding: 10px;
-  text-align: center;
-`;
+const AddButton = styled('button')
 
 function CreateTask(props) {
   const [title, setTitle] = useState("");
@@ -46,9 +41,16 @@ function CreateTask(props) {
         placeholder="Add description"
         variant="filled"
       />
-      <AddButton type="submit" variant="contained">
+      <Button
+        sx={{
+          width: "25ch",
+          backgroundColor: "#778899",
+        }}
+        type="submit"
+        variant="contained"
+      >
         Add Task
-      </AddButton>
+      </Button>
     </Stack>
   );
 }
