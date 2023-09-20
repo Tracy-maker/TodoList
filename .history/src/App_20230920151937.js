@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import CreateTask from "./components/CreateTask";
 import TaskList from "./components/TaskList";
 import { Box, Stack } from "@mui/material";
@@ -49,36 +50,34 @@ function App() {
 
     const existingTasks = JSON.parse(JSON.getItem("tasks")) || [];
     existingTasks.push(newTasks);
-    localStorage.setItem("tasks", JSON.stringify(existingTasks));
-    setTasks(existingTasks);
-  };
-
-  const deleteTasksById = (id) => {
-    const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const updatedTasks = existingTasks.filter((task) => {
-      return task.id !== id;
-    });
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    localStorage.setItem("tasks", 
+    const updatedTasks = [...tasks, newTasks];
     setTasks(updatedTasks);
   };
 
-  const editTaskById = async (id, newTitle, newDescription) => {
-    const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const taskToEdit = existingTasks.findIndex((task) => task.id === id);
+  const deleteTasksById = async (id) => {
+    await axios.delete(`http://localhost:3001/tasks/${id}`);
+    const updatedTasks = tasks.filter((task) => {
+      return task.id !== id;
+    });
+    setTasks(updatedTasks);
+  };
 
-    if (taskToEdit) {
-      const updatedTask = {
-        ...taskToEdit,
-        title: newTitle,
-        description: newDescription,
-      };
+  const editTaskById = async (id, newTitle) => {
+    const response = await axios.put(`http://localhost:3001/tasks/${id}`, {
+      title: newTitle,
+    });
 
-      const updatedTasks = existingTasks.map((task) =>
-        task.id === id ? updatedTask : task
-      );
-      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-      setTasks(updatedTasks);
-    }
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          ...response.data,
+        };
+      }
+      return tasks;
+    });
+    setTasks(updatedTasks);
   };
 
   const handleFilterTasks = (filter) => {

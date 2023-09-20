@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import CreateTask from "./components/CreateTask";
 import TaskList from "./components/TaskList";
 import { Box, Stack } from "@mui/material";
@@ -63,23 +64,18 @@ function App() {
   };
 
   const editTaskById = async (id, newTitle, newDescription) => {
+
     const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const taskToEdit = existingTasks.findIndex((task) => task.id === id);
-
-    if (taskToEdit) {
-      const updatedTask = {
-        ...taskToEdit,
-        title: newTitle,
-        description: newDescription,
-      };
-
-      const updatedTasks = existingTasks.map((task) =>
-        task.id === id ? updatedTask : task
-      );
-      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-      setTasks(updatedTasks);
+    const taskIndex = existingTasks.findIndex((task) => task.id === id);
+  
+    if (taskIndex !== -1) {
+      existingTasks[taskIndex].title = newTitle;
+      existingTasks[taskIndex].description = newDescription;
+      localStorage.setItem("tasks", JSON.stringify(existingTasks));
+      setTasks(existingTasks);
     }
   };
+  
 
   const handleFilterTasks = (filter) => {
     setFilter(filter);

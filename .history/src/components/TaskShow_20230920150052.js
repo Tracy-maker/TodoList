@@ -46,6 +46,7 @@ function TaskShow(props) {
       </>
     );
   }
+  
 
   const handleDelete = () => {
     props.onDelete(props.task.id);

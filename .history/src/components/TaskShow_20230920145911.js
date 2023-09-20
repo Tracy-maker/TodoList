@@ -34,17 +34,10 @@ function TaskShow(props) {
     props.onEdit(id, newTitle);
   };
 
-  let content;
-
+  let content = <h3>{props.task.title}</h3>;
+  <h3>{props.task.description}</h3>;
   if (showEdit) {
     content = <TaskEdit onSubmit={handleSubmit} task={props.task} />;
-  } else {
-    content = (
-      <>
-        <h3>{props.task.title}</h3>
-        <h3>{props.task.description}</h3>
-      </>
-    );
   }
 
   const handleDelete = () => {
