@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 
 const TaskEditBar = styled(Box)`
   display: flex;
+  flex-direction: column;
   gap: 10px;
 `;
 
@@ -23,7 +24,6 @@ function TaskEdit({task,onSubmit}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
     onSubmit(task.id, newTitle, newDescription);
   };
  

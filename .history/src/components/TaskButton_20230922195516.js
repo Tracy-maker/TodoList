@@ -19,14 +19,14 @@ function TaskButton({defaultValue,onFilterChange}) {
         All Tasks
       </Button>
       <Button
-        variant={defaultValue === "done" ? "contained" : "outlined"}
-        onClick={() => onFilterChange("done")}
+        variant={props.defaultValue === "done" ? "contained" : "outlined"}
+        onClick={() => props.onFilterChange("done")}
       >
         Done
       </Button>
       <Button
-        variant={defaultValue === "inProgress" ? "contained" : "outlined"}
-        onClick={() => onFilterChange("inProgress")}
+        variant={props.defaultValue === "inProgress" ? "contained" : "outlined"}
+        onClick={() => props.onFilterChange("inProgress")}
       >
         In Progress
       </Button>

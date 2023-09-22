@@ -6,7 +6,7 @@ import { useState } from "react";
 import { styled } from "@mui/material";
 
 const Input = styled(TextField)`
-  padding: 2%;
+  padding:2%;
   width: 80%;
 `;
 
@@ -18,7 +18,7 @@ const AddButton = styled(Button)`
   margin-right: 15px;
 `;
 
-function CreateTask({ onCreate }) {
+function CreateTask({onCreate}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -34,7 +34,7 @@ function CreateTask({ onCreate }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (title.trim() !== "" || description.trim() !== "") {
-      onCreate(title, description);
+      onCreate( title, description );
       setTitle("");
       setDescription("");
     }

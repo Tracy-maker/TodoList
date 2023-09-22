@@ -45,7 +45,7 @@ function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setTasks("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   const createTask = (title, description) => {
@@ -75,7 +75,7 @@ function App() {
     const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     const taskToEdit = existingTasks.findIndex((task) => task.id === id);
 
-    if (taskToEdit !==-1) {
+    if (taskToEdit) {
       const updatedTask = {
         ...taskToEdit,
         title: newTitle,

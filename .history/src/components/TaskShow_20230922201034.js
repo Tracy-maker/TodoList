@@ -65,15 +65,15 @@ function TaskShow({ task, onEdit, onDelete, toggleCheckedBoxById }) {
           </TaskInformation>
         </>
       );
-    } else {
-      content = (
-        <>
-          <Typography variant="h5">Invalid Title</Typography>
-          <Typography variant="body1">Invalid Description</Typography>
-        </>
-      );
-    }
+    }else{
+        content = (
+          <>
+            <Typography variant="h5">Invalid Title</Typography>
+            <Typography variant="body1">Invalid Description</Typography>
+          </>
+        );
   }
+}
 
   const handleDelete = () => {
     onDelete(task.id);

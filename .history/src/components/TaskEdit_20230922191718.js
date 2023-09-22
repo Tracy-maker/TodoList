@@ -2,43 +2,38 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styled from "styled-components";
-import { Box } from "@mui/material";
 
-const TaskEditBar = styled(Box)`
+const TaskEditBar = styled.form`
   display: flex;
+  flex-direction: column;
   gap: 10px;
 `;
 
-function TaskEdit({task,onSubmit}) {
-  const [newTitle, setNewTitle] = useState(task.title);
-  const [newDescription, setNewDescription] = useState(task.description);
+function TaskEdit(props) {
+  const [newTitle, setNewTitle] = useState(props.title);
+  const [newDescription, setNewDescription] = useState(props.description);
 
-  const handleChangeName = (event) => {
+  const handleChange = (event) => {
     setNewTitle(event.target.value);
-  };
-
-  const handleChangeDescriptions = (event) => {
     setNewDescription(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    onSubmit(task.id, newTitle, newDescription);
+    props.onSubmit(props.id, newTitle, newDescription);
   };
- 
 
   return (
-    <TaskEditBar component="form" onSubmit={handleSubmit}>
+    <TaskEditBar onSubmit={handleSubmit}>
       <TextField
         value={newTitle}
-        onChange={handleChangeName}
+        onChange={handleChange}
         fullWidth
         placeholder="Edit task title"
       />
       <TextField
         value={newDescription}
-        onChange={handleChangeDescriptions}
+        onChange={handleChange}
         fullWidth
         placeholder="Edit task description"
       />

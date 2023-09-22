@@ -34,7 +34,7 @@ const TaskInformation = styled(Typography)`
   text-decoration: ${({ isDeleted }) => (isDeleted ? "line-through" : "none")};
 `;
 
-function TaskShow({ task, onEdit, onDelete, toggleCheckedBoxById }) {
+function TaskShow({task,onEdit,onDelete,toggleCheckedBoxById}) {
   const [showEdit, setShowEdit] = useState(false);
 
   const handleEdit = () => {
@@ -57,23 +57,23 @@ function TaskShow({ task, onEdit, onDelete, toggleCheckedBoxById }) {
     ) {
       content = (
         <>
-          <TaskInformation variant="h5" isDeleted={task.status === "done"}>
+          <TaskInformation
+            variant="h5"
+            isDeleted={task.status === "done"}
+          >
             {task.title}
           </TaskInformation>
-          <TaskInformation variant="body1" isDeleted={task.status === "done"}>
+          <TaskInformation
+            variant="body1"
+            isDeleted={task.status === "done"}
+          >
             {task.description}
           </TaskInformation>
         </>
       );
-    } else {
-      content = (
-        <>
-          <Typography variant="h5">Invalid Title</Typography>
-          <Typography variant="body1">Invalid Description</Typography>
-        </>
-      );
     }
   }
+  console.log(content);
 
   const handleDelete = () => {
     onDelete(task.id);
@@ -86,7 +86,7 @@ function TaskShow({ task, onEdit, onDelete, toggleCheckedBoxById }) {
   return (
     <TaskItem>
       <Checkbox
-        checked={task.status === "done"}
+        checked={props.task.status === "done"}
         onChange={handleCheckboxChange}
       />
       <TaskContent>{content}</TaskContent>

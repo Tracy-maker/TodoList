@@ -9,22 +9,22 @@ const Reminder = styled(Box)`
 `;
 
 function TaskList({tasks,toggleCheckedBoxById,onDelete,onEdit}) {
-  const renderedTasksList = tasks.map((task) => {
+  const renderedTasksList = props.tasks.map((task) => {
     return (
       <TaskShow
         key={task.id}
         task={task}
-        onDelete={onDelete}
-        onEdit={onEdit}
-        toggleCheckedBoxById={toggleCheckedBoxById}
+        onDelete={props.onDelete}
+        onEdit={props.onEdit}
+        toggleCheckedBoxById={props.toggleCheckedBoxById}
       />
     );
   });
 
   return (
     <>
-      <Reminder noTasks={tasks.length === 0}>
-        {tasks.length === 0 && "NO TASKS 🕷️"}
+      <Reminder noTasks={props.tasks.length === 0}>
+        {props.tasks.length === 0 && "NO TASKS 🕷️"}
       </Reminder>
       {renderedTasksList}
     </>

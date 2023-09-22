@@ -34,7 +34,7 @@ const TaskInformation = styled(Typography)`
   text-decoration: ${({ isDeleted }) => (isDeleted ? "line-through" : "none")};
 `;
 
-function TaskShow({ task, onEdit, onDelete, toggleCheckedBoxById }) {
+function TaskShow(props) {
   const [showEdit, setShowEdit] = useState(false);
 
   const handleEdit = () => {
@@ -43,53 +43,41 @@ function TaskShow({ task, onEdit, onDelete, toggleCheckedBoxById }) {
 
   const handleSubmit = (id, newTitle, newDescription) => {
     setShowEdit(false);
-    onEdit(id, newTitle, newDescription);
+    props.onEdit(id, newTitle, newDescription);
   };
 
   let content;
 
   if (showEdit) {
-    content = <TaskEdit onSubmit={handleSubmit} task={task} />;
+    content = <TaskEdit onSubmit={handleSubmit} task={props.task} />;
   } else {
-    if (
-      typeof task.title === "string" &&
-      typeof task.description === "string"
-    ) {
-      content = (
-        <>
-          <TaskInformation variant="h5" isDeleted={task.status === "done"}>
-            {task.title}
-          </TaskInformation>
-          <TaskInformation variant="body1" isDeleted={task.status === "done"}>
-            {task.description}
-          </TaskInformation>
-        </>
-      );
-    } else {
-      content = (
-        <>
-          <Typography variant="h5">Invalid Title</Typography>
-          <Typography variant="body1">Invalid Description</Typography>
-        </>
-      );
-    }
+    content = (
+      <>
+        <TaskInformation variant="h5" isDeleted={props.task.status === "done"}>
+          {props.task.title}
+        </TaskInformation>
+        <TaskInformation variant="h7" isDeleted={props.task.status === "done"}>
+          {props.task.description}
+        </TaskInformation>
+      </>
+    );
   }
+  console.log(content);
 
   const handleDelete = () => {
-    onDelete(task.id);
+    props.onDelete(props.task.id);
   };
 
   const handleCheckboxChange = () => {
-    toggleCheckedBoxById(task.id);
+    props.toggleCheckedBoxById(props.task.id);
   };
 
   return (
     <TaskItem>
-      <Checkbox
-        checked={task.status === "done"}
-        onChange={handleCheckboxChange}
-      />
-      <TaskContent>{content}</TaskContent>
+      <Checkbox checked={props.task.status === "done"} onChange={handleCheckboxChange} />
+      <TaskContent>
+        {content}
+      </TaskContent>
 
       <Box>
         <Chip

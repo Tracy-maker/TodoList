@@ -6,12 +6,13 @@ import { Box } from "@mui/material";
 
 const TaskEditBar = styled(Box)`
   display: flex;
+  flex-direction: column;
   gap: 10px;
 `;
 
-function TaskEdit({task,onSubmit}) {
-  const [newTitle, setNewTitle] = useState(task.title);
-  const [newDescription, setNewDescription] = useState(task.description);
+function TaskEdit(props) {
+  const [newTitle, setNewTitle] = useState(props.task.title);
+  const [newDescription, setNewDescription] = useState(props.task.description);
 
   const handleChangeName = (event) => {
     setNewTitle(event.target.value);
@@ -23,8 +24,7 @@ function TaskEdit({task,onSubmit}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    onSubmit(task.id, newTitle, newDescription);
+    props.onSubmit(props.task.id, newTitle, newDescription);
   };
  
 

@@ -76,17 +76,13 @@ function App() {
     const taskToEdit = existingTasks.findIndex((task) => task.id === id);
 
     if (taskToEdit !==-1) {
-      const updatedTask = {
-        ...taskToEdit,
+       existingTasks[taskToEdit]={
+        ...existingTasks[taskToEdit],
         title: newTitle,
         description: newDescription,
-      };
-
-      const updatedTasks = existingTasks.map((task) =>
-        task.id === id ? updatedTask : task
-      );
-      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-      setTasks(updatedTasks);
+       }
+      localStorage.setItem("tasks", JSON.stringify(existingTasks));
+      setTasks(existingTasks);
     }
   };
 
